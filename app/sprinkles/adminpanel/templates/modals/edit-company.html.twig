@@ -1,0 +1,35 @@
+{% extends "modals/modal.html.twig" %}
+
+{% block modal_title %}Edit Company{% endblock %}
+
+{% block modal_body %}
+<form class="js-form" action="{{site.uri.public}}/companies/edit_company" enctype='multipart/form-data' method="post">
+    {% include "forms/csrf.html.twig" %}
+    <input type="hidden" id="company_id" name="id" value="{{id}}" required>
+    <div class="form-group has-feedback">
+        <label>Company Name</label>
+        <input type="text" class="form-control" name="name" value="{{name}}" required>
+    </div>
+    <div class="form-group has-feedback">
+        <label>email</label>
+        <input type="email" class="form-control" name="email" value="{{email}}" required>
+    </div>
+    <div class="form-group has-feedback">
+        <label>logo</label>
+        <input id="logo_file" type="file" class="form-control" name="logo" multiple accept="image/*"
+            onchange="document.getElementById('logo_edit_preview').src = window.URL.createObjectURL(this.files[0]); document.getElementById('logo_edit_preview').style.display = 'block';">
+        <img id="logo_edit_preview" alt="logo_edit_preview" width="100" height="100" src="{{logo}}"/>
+    </div>
+    <div class="form-group has-feedback">
+        <label>website</label>
+        <input type="text" class="form-control" name="website" value="{{website}}" required>
+    </div>
+    <div class="js-form-alerts">
+    </div>
+    <br>
+    <div class="btn-group-action">
+        <button type="submit" class="btn btn-success btn-lg btn-block">Update</button>
+        <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">Cancel</button>
+    </div>
+</form>
+{% endblock %}

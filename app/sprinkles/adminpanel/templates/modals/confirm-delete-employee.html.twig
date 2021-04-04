@@ -1,0 +1,19 @@
+{% extends "modals/modal.html.twig" %}
+
+{% block modal_title %}Delete employee{% endblock %}
+
+{% block modal_body %}
+<form class="js-form" action="{{site.uri.public}}/companies/delete_employee" method="delete">
+    {% include "forms/csrf.html.twig" %}
+    <input type="hidden" id="employee_id" name="id" value="{{id}}">
+    <input type="hidden" id="employee_name" name="name" value="{{name}}">
+    <div class="js-form-alerts">
+    </div>
+    <h4>Are you sure you want to delete the employee <b>{{name}}</b>?<br><small>This action cannot be undone.</small></h4>
+    <br>
+    <div class="btn-group-action">
+        <button type="submit" class="btn btn-danger btn-lg btn-block">Delete</button>
+        <button type="button" class="btn btn-default btn-lg btn-block" data-dismiss="modal">Cancel</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{
+    "name": "adriana/adminpanel",
+    "type": "userfrosting-sprinkle",
+    "description": "Admin Panel by Adriana Ito.",
+    "autoload": {
+        "psr-4": {
+            "UserFrosting\\Sprinkle\\AdminPanel\\": "src/"
+        }
+    }
+}

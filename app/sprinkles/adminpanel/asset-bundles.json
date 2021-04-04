@@ -1,0 +1,31 @@
+{
+    "bundle": {
+        "js/pages/companies": {
+            "scripts": [
+                "userfrosting/js/widgets/companies.js",
+                "userfrosting/js/pages/companies.js"
+
+            ],
+            "options": {
+                "result": {
+                    "type": {
+                        "scripts": "plain"
+                    }
+                }
+            }
+        },
+         "js/pages/employees": {
+            "scripts": [
+                "userfrosting/js/widgets/employees.js",
+                "userfrosting/js/pages/employees.js"
+            ],
+            "options": {
+                "result": {
+                    "type": {
+                        "scripts": "plain"
+                    }
+                }
+            }
+        }
+    }
+}

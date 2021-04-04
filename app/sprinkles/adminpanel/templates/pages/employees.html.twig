@@ -1,0 +1,78 @@
+{% extends 'pages/abstract/dashboard.html.twig' %}
+
+{# Overrides blocks in head of base template #}
+{% block page_title %}Companies{% endblock %}
+{% block page_description %}This page provides a list of companies{% endblock %}
+
+{% block body_matter %}
+    <div class="row">
+        <div class="col-md-12">
+            <div id="employees" class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title"><i class="fas fa-building"></i></i> List of Employees</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Company</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                        {% for employee in employees %}
+                            <tr>
+                                <td>{{employee.firstname}}</td>
+                                <td>{{employee.lastname}}</td>
+                                <td>{{employee.email}}</td>
+                                <td>{{employee.phone}}</td>
+
+                                <td>{{employee.company}}</td>
+                                <td>
+                                    <div class="widget-employees-edit">
+                                        <a href="#" class="js-employee-edit"
+                                            data-id="{{employee.id}}"
+                                            data-firstname="{{employee.firstname}}"
+                                            data-lastname="{{employee.lastname}}"
+                                            data-email="{{employee.email}}"
+                                            data-phone="{{employee.phone}}"
+                                            data-company="{{employee.company}}">
+                                            <i class="fas fa-pencil-alt"></i> Edit
+                                        </a>
+                                    </div>
+                                    <div class="widget-employees-delete">
+                                        <a href="#" data-id="{{employee.id}}" data-name="{{employee.name}}" class="js-employee-delete">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="widget-employees" class="box box-primary">
+        <div class="box-footer">
+            <button type="button" class="btn btn-success js-employee-create">
+                <i class="fas fa-plus-square"></i> Create Employee
+            </button>
+        </div>
+    </div>
+
+{% endblock %}
+{% block scripts_page %}
+    <!-- Include validation rules -->
+    <script>
+    {% include "pages/partials/page.js.twig" %}
+    </script>
+
+    <!-- Include form widgets JS -->
+    {{ assets.js('js/form-widgets') | raw }}
+
+    <!-- Include page-specific JS s-->
+    {{ assets.js('js/pages/employees') | raw }}
+
+{% endblock %}

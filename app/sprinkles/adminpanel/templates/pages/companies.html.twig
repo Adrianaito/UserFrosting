@@ -1,0 +1,75 @@
+
+{% extends 'pages/abstract/dashboard.html.twig' %}
+
+{# Overrides blocks in head of base template #}
+{% block page_title %}Companies{% endblock %}
+{% block page_description %}This page provides a list of companies{% endblock %}
+
+{% block body_matter %}
+    <div class="row">
+        <div class="col-md-12">
+            <div id="companies" class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title"><i class="fas fa-building"></i></i> List of Companies</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Logo</th>
+                            <th>Website</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                        {% for company in companies %}
+                            <tr>
+                                <td>{{company.name}}</td>
+                                <td>{{company.email}}</td>
+                                <td><img alt="logo_preview" width="100" height="100" src="{{logos[company.id]}}"/></td>
+                                <td>{{company.website}}</td>
+                                <td>
+                                    <div class="widget-companies-edit">
+                                        <a href="#" class="js-company-edit"
+                                            data-id="{{company.id}}"
+                                            data-name="{{company.name}}"
+                                            data-email="{{company.email}}"
+                                            data-logo="{{company.logo}}"
+                                            data-website="{{company.website}}">
+                                            <i class="fas fa-pencil-alt"></i> Edit
+                                        </a>
+                                    </div>
+                                    <div class="widget-companies-delete">
+                                        <a href="#" data-id="{{company.id}}" data-name="{{company.name}}" class="js-company-delete">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="widget-companies" class="box box-primary">
+        <div class="box-footer">
+            <button type="button" class="btn btn-success js-company-create">
+                <i class="fas fa-plus-square"></i> Create Company
+            </button>
+        </div>
+    </div>
+
+{% endblock %}
+{% block scripts_page %}
+    <!-- Include validation rules -->
+    <script>
+    {% include "pages/partials/page.js.twig" %}
+    </script>
+
+    <!-- Include form widgets JS -->
+    {{ assets.js('js/form-widgets') | raw }}
+
+    <!-- Include page-specific JS s-->
+    {{ assets.js('js/pages/companies') | raw }}
+
+{% endblock %}
